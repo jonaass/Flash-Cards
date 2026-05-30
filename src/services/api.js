@@ -1,31 +1,12 @@
 // src/services/api.js
 //
-// Camada de serviço: toda comunicação com o backend fica aqui.
-// Os componentes e hooks nunca chamam fetch diretamente —
-// sempre passam por este módulo.
-//
-// Vantagens:
-//   - Troca de URL ou modelo em um único lugar
-//   - Fácil de mockar em testes
-//   - Lógica de sanitização isolada
-//
-// Exporta:
-//   generateFlashcards(text) → Promise<FlashCard[]>
-//
-// Tipo FlashCard: { topic: string, question: string, answer: string }
+// Limite do plano gratuito do Groq: 12.000 tokens/min
+// ~1 token = 3-4 caracteres, então limitamos o texto a
+// 24.000 caracteres para deixar margem para o prompt e resposta.
 
-const API_CONFIG = {
-  // /api/flashcards é redirecionado para o server.js via proxy do Vite
-  // (em produção, o server.js já serve na mesma origem)
-  endpoint:  '/api/flashcards',
-  model:     'claude-sonnet-4-20250514',
-  maxTokens: 1500,
-}
+const PROXY_URL = '/api/flashcards'
+const MAX_CHARS = 24000  // limite seguro para o plano gratuito
 
-/**
- * Monta o prompt que instrui o modelo a gerar flashcards em JSON.
- * Separado para facilitar ajustes no estilo das perguntas.
- */
 function buildPrompt(text) {
   return `Analise o texto abaixo e crie entre 6 e 12 flashcards de estudo em português.
 
@@ -42,47 +23,53 @@ Texto:
 ${text}`
 }
 
-/**
- * Remove possíveis marcações de código que o modelo pode inserir
- * mesmo quando instruído a não fazê-lo.
- */
 function sanitizeJson(raw) {
   return raw.replace(/```json/gi, '').replace(/```/g, '').trim()
 }
 
 /**
- * Chama o backend e retorna os flashcards gerados.
- *
- * @param   {string} text - Texto fornecido pelo usuário
- * @returns {Promise<Array<{topic: string, question: string, answer: string}>>}
- * @throws  {Error} se a requisição falhar ou o JSON for inválido
+ * Trunca o texto se for maior que o limite seguro,
+ * evitando o erro 413 (Payload Too Large) do Groq.
  */
+function truncateText(text) {
+  if (text.length <= MAX_CHARS) return { text, truncated: false }
+  return {
+    text:      text.slice(0, MAX_CHARS),
+    truncated: true,
+  }
+}
+
 export async function generateFlashcards(text) {
-  const response = await fetch(API_CONFIG.endpoint, {
+  const { text: safeText, truncated } = truncateText(text)
+
+  if (truncated) {
+    console.warn(
+      `[api.js] Texto truncado de ${text.length} para ${MAX_CHARS} caracteres ` +
+      `para respeitar o limite de tokens do Groq.`
+    )
+  }
+
+  const response = await fetch(PROXY_URL, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model:      API_CONFIG.model,
-      max_tokens: API_CONFIG.maxTokens,
-      messages: [{ role: 'user', content: buildPrompt(text) }],
+      model:      'llama-3.3-70b-versatile',
+      max_tokens: 1500,
+      messages:   [{ role: 'user', content: buildPrompt(safeText) }],
     }),
   })
 
   if (!response.ok) {
-    throw new Error(`Erro ${response.status}: ${response.statusText}`)
+    throw new Error(`Erro na API: ${response.status}`)
   }
 
-  const data = await response.json()
-
-  const rawText = (data.content || [])
-    .map(block => block.text || '')
-    .join('')
-
-  const cards = JSON.parse(sanitizeJson(rawText))
+  const data    = await response.json()
+  const rawText = (data.content || []).map(b => b.text || '').join('')
+  const cards   = JSON.parse(sanitizeJson(rawText))
 
   if (!Array.isArray(cards) || cards.length === 0) {
-    throw new Error('Nenhum flashcard gerado. Tente com outro texto.')
+    throw new Error('Nenhum flashcard gerado.')
   }
 
-  return cards
+  return { cards, truncated }
 }

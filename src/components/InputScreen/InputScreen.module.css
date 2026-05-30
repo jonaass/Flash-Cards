@@ -60,13 +60,30 @@
 .deckHint {
   font-size: 11px;
   color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 4px;
 }
 
-.deckHint::before {
-  font-size: 10px;
+/* Cabeçalho do textarea com contador */
+.textareaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.charCount {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.charNormal {
+  color: var(--text-muted);
+}
+
+.charWarn {
+  color: var(--warn-text);
+}
+
+.charDanger {
+  color: var(--danger-text);
 }
 
 .textarea {
@@ -87,6 +104,25 @@
 
 .textarea:focus {
   border-color: var(--accent);
+}
+
+/* Mensagens de aviso */
+.warnMsg {
+  font-size: 12px;
+  color: var(--warn-text);
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  border-left: 3px solid var(--warn-text);
+}
+
+.dangerMsg {
+  font-size: 12px;
+  color: var(--danger-text);
+  background: var(--danger-bg);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  border-left: 3px solid var(--danger-text);
 }
 
 .counter {
