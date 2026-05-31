@@ -1,4 +1,4 @@
-# ⚡ Flash-Card IA
+#  Flash-Card IA
 
 > Transforme qualquer texto em flashcards de estudo com Inteligência Artificial.
 
@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Índice
+##  Índice
 
 - [Sobre o projeto](#-sobre-o-projeto)
 - [Funcionalidades](#-funcionalidades)
@@ -25,7 +25,7 @@
 
 ---
 
-## 📖 Sobre o projeto
+##  Sobre o projeto
 
 O **Flash-Card IA** é uma aplicação web que usa Inteligência Artificial para gerar flashcards de estudo automaticamente a partir de qualquer texto. Cole um conteúdo — aula, artigo, resumo, capítulo de livro — e a IA analisa, identifica os tópicos principais e cria perguntas e respostas para fixar o aprendizado.
 
@@ -33,7 +33,7 @@ Durante o estudo, o usuário responde se lembrou ou não de cada card. Ao final,
 
 ---
 
-## ✨ Funcionalidades
+##  Funcionalidades
 
 - 📝 **Geração automática** de flashcards a partir de texto colado pelo usuário
 - 🃏 **Animação de flip 3D** nos cards — frente (pergunta) e verso (resposta)
@@ -48,9 +48,9 @@ Durante o estudo, o usuário responde se lembrou ou não de cada card. Ao final,
 
 ---
 
-## 🛠 Tecnologias
+##  Tecnologias
 
-### 🖥 Frontend
+###  Frontend
 
 | Tecnologia | Versão | Categoria | Finalidade |
 |---|---|---|---|
@@ -60,7 +60,7 @@ Durante o estudo, o usuário responde se lembrou ou não de cada card. Ao final,
 | JavaScript ES6+ | — | Linguagem | Lógica, async/await, hooks e destructuring |
 | Google Fonts | — | Tipografia | Lora (cards) + DM Sans (interface) |
 
-### ⚙️ Backend
+###  Backend
 
 | Tecnologia | Versão | Categoria | Finalidade |
 |---|---|---|---|
@@ -68,14 +68,14 @@ Durante o estudo, o usuário responde se lembrou ou não de cada card. Ao final,
 | `http` / `https` | nativo | Módulo Node | Servidor HTTP e requisições para a Groq |
 | `fs` / `path` | nativo | Módulo Node | Leitura do `.env` e arquivos estáticos |
 
-### 🤖 Inteligência Artificial
+###  Inteligência Artificial
 
 | Tecnologia | Categoria | Finalidade |
 |---|---|---|
 | [Groq API](https://console.groq.com/) | API de IA | Plataforma de inferência gratuita e rápida |
 | [LLaMA 3.3 70B](https://groq.com/) | Modelo LLM | Análise do texto e geração dos flashcards em JSON |
 
-### 🛠 Ferramentas
+###  Ferramentas
 
 | Ferramenta | Finalidade |
 |---|---|
@@ -87,7 +87,7 @@ Durante o estudo, o usuário responde se lembrou ou não de cada card. Ao final,
 
 ---
 
-## 🏗 Arquitetura
+##  Arquitetura
 
 ```
 Usuário → React (Vite :5173) → Node.js (:3001) → Groq API → LLaMA 3.3 70B
@@ -99,7 +99,7 @@ A **Biblioteca** usa `localStorage` para persistir os baralhos estudados diretam
 
 ---
 
-## ✅ Pré-requisitos
+##  Pré-requisitos
 
 - [Node.js](https://nodejs.org/) v18 ou superior
 - [Git](https://git-scm.com/)
@@ -107,7 +107,7 @@ A **Biblioteca** usa `localStorage` para persistir os baralhos estudados diretam
 
 ---
 
-## 🚀 Instalação e uso
+##  Instalação e uso
 
 ### 1. Clone o repositório
 
@@ -165,7 +165,7 @@ http://localhost:5173
 
 ---
 
-## 📁 Estrutura de pastas
+##  Estrutura de pastas
 
 ```
 Flash-Cards/
@@ -195,7 +195,7 @@ Flash-Cards/
 
 ---
 
-## 🔐 Variáveis de ambiente
+##  Variáveis de ambiente
 
 | Variável | Descrição | Obrigatório |
 |---|---|---|
@@ -223,14 +223,3 @@ Flash-Cards/
 > O plano gratuito do Render pode ter cold start de ~30 segundos após inatividade.
 
 ---
-
-## 👨‍💻 Autor
-
-Feito por **Jonas**
-
-[![GitHub](https://img.shields.io/badge/GitHub-jonaass-181717?logo=github)](https://github.com/jonaass)
-
-
----
-
-<p align="center">Feito com ☕ e muito estudo</p>
