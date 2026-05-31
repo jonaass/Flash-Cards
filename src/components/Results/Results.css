@@ -9,8 +9,16 @@
   gap: 20px;
 }
 
-.results-title { font-size: 22px; font-weight: 500; }
-.results-sub   { font-size: 14px; color: var(--color-text-muted); margin-top: -12px; }
+.results-title {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.results-sub {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-top: -12px;
+}
 
 /* Métricas */
 .metrics-grid {
@@ -29,21 +37,42 @@
   gap: 4px;
 }
 
-.metric-success { background: var(--color-success-bg); }
-.metric-danger  { background: var(--color-danger-bg); }
-.metric-info    { background: var(--color-info-bg); }
+.metric-success {
+  background: var(--color-success-bg);
+}
 
-.metric-value { font-size: 24px; font-weight: 500; }
-.metric-label { font-size: 11px; opacity: 0.75; }
+.metric-danger {
+  background: var(--color-danger-bg);
+}
+
+.metric-info {
+  background: var(--color-info-bg);
+}
+
+.metric-value {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.metric-label {
+  font-size: 11px;
+  opacity: 0.75;
+}
 
 .metric-success .metric-value,
-.metric-success .metric-label { color: var(--color-success-text); }
+.metric-success .metric-label {
+  color: var(--color-success-text);
+}
 
 .metric-danger .metric-value,
-.metric-danger .metric-label { color: var(--color-danger-text); }
+.metric-danger .metric-label {
+  color: var(--color-danger-text);
+}
 
 .metric-info .metric-value,
-.metric-info .metric-label { color: var(--color-info-text); }
+.metric-info .metric-label {
+  color: var(--color-info-text);
+}
 
 /* Principal dificuldade */
 .hardest-block {
@@ -64,8 +93,15 @@
   letter-spacing: 0.05em;
 }
 
-.hardest-topic { font-size: 16px; font-weight: 500; }
-.hardest-desc  { font-size: 13px; color: var(--color-text-muted); }
+.hardest-topic {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.hardest-desc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
 
 /* Breakdown */
 .breakdown {
@@ -86,8 +122,13 @@
   font-size: 13px;
 }
 
-.topic-name { color: var(--color-text); }
-.topic-stat { color: var(--color-text-muted); }
+.topic-name {
+  color: var(--color-text);
+}
+
+.topic-stat {
+  color: var(--color-text-muted);
+}
 
 .topic-track {
   height: 5px;
@@ -115,4 +156,6 @@
   transition: background var(--transition);
 }
 
-.btn-restart:hover { background: var(--color-bg-secondary); }
+.btn-restart:hover {
+  background: var(--color-bg-secondary);
+}

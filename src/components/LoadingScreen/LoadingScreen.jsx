@@ -1,6 +1,6 @@
 // LoadingScreen.jsx
-import { TopBar } from '../TopBar/TopBar'
-import styles from './LoadingScreen.module.css'
+import { TopBar } from "../TopBar/TopBar";
+import styles from "./LoadingScreen.module.css";
 
 export function LoadingScreen({ theme, onToggleTheme }) {
   return (
@@ -11,5 +11,5 @@ export function LoadingScreen({ theme, onToggleTheme }) {
         <p className={styles.text}>Analisando texto e criando flashcards…</p>
       </div>
     </div>
-  )
+  );
 }

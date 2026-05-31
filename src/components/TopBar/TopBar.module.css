@@ -1,29 +1,67 @@
 .bar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem; height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 56px;
   border-bottom: 1px solid var(--border);
   background: var(--bg);
   transition: background var(--transition), border-color var(--transition);
 }
+
 .logo {
-  font-family: var(--font-display); font-size: 15px; font-weight: 500;
-  color: var(--text); letter-spacing: -0.02em; min-width: 120px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  min-width: 120px;
 }
+
 .tabs {
-  display: flex; gap: 4px;
-  background: var(--bg-input); border-radius: var(--radius-md); padding: 4px;
+  display: flex;
+  gap: 4px;
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  padding: 4px;
 }
+
 .tab {
-  padding: 6px 20px; border-radius: var(--radius-sm); border: none;
-  background: transparent; color: var(--text-muted);
-  font-family: var(--font-ui); font-size: 13px; font-weight: 500; cursor: pointer;
+  padding: 6px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
   transition: all var(--transition);
 }
-.tab:hover { color: var(--text); }
-.tabActive { background: var(--bg-panel); color: var(--text) !important; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-.themeToggle {
-  min-width: 120px; display: flex; justify-content: flex-end;
-  background: none; border: none; cursor: pointer; font-size: 18px;
-  padding: 6px; border-radius: var(--radius-sm); transition: background var(--transition);
+
+.tab:hover {
+  color: var(--text);
 }
-.themeToggle:hover { background: var(--bg-input); }
+
+.tabActive {
+  background: var(--bg-panel);
+  color: var(--text) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.themeToggle {
+  min-width: 120px;
+  display: flex;
+  justify-content: flex-end;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.themeToggle:hover {
+  background: var(--bg-input);
+}

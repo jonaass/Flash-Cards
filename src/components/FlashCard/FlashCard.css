@@ -98,7 +98,16 @@
   transition: opacity var(--transition);
 }
 
-.btn-judge:hover { opacity: 0.82; }
+.btn-judge:hover {
+  opacity: 0.82;
+}
 
-.btn-wrong   { background: var(--color-danger-bg);  color: var(--color-danger-text); }
-.btn-correct { background: var(--color-success-bg); color: var(--color-success-text); }
+.btn-wrong {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+}
+
+.btn-correct {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}

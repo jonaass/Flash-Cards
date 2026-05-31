@@ -7,25 +7,24 @@
 //   onGenerate(text: string) — chamado ao clicar em "Gerar"
 //   error: string            — mensagem de erro (vazia = sem erro)
 
-import { useState } from 'react'
-import './InputPanel.css'
+import { useState } from "react";
+import "./InputPanel.css";
 
-const MIN_CHARS = 50
+const MIN_CHARS = 50;
 
 export function InputPanel({ onGenerate, error }) {
-  const [text, setText] = useState('')
+  const [text, setText] = useState("");
 
-  const trimmed    = text.trim()
-  const remaining  = MIN_CHARS - trimmed.length
-  const canGenerate = trimmed.length >= MIN_CHARS
+  const trimmed = text.trim();
+  const remaining = MIN_CHARS - trimmed.length;
+  const canGenerate = trimmed.length >= MIN_CHARS;
 
   function handleClick() {
-    if (canGenerate) onGenerate(text)
+    if (canGenerate) onGenerate(text);
   }
 
   return (
     <div className="input-layout">
-
       {/* ── Painel esquerdo: entrada de texto ── */}
       <div className="panel panel--left">
         <span className="label">Seu texto</span>
@@ -33,14 +32,14 @@ export function InputPanel({ onGenerate, error }) {
         <textarea
           className="textarea"
           value={text}
-          onChange={e => setText(e.target.value)}
+          onChange={(e) => setText(e.target.value)}
           placeholder="Cole ou digite aqui o conteúdo que deseja estudar..."
         />
 
         {/* Contador de caracteres faltando */}
         {trimmed.length > 0 && !canGenerate && (
           <p className="char-counter">
-            {remaining} caractere{remaining !== 1 ? 's' : ''} faltando
+            {remaining} caractere{remaining !== 1 ? "s" : ""} faltando
           </p>
         )}
 
@@ -64,7 +63,6 @@ export function InputPanel({ onGenerate, error }) {
           <p className="empty-sub">Cole seu texto e clique em gerar</p>
         </div>
       </div>
-
     </div>
-  )
+  );
 }

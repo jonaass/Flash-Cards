@@ -13,7 +13,7 @@
 const PROXY_URL = '/api/flashcards'
 
 function buildPrompt(text) {
-  return `Analise o texto abaixo e crie entre 6 e 12 flashcards de estudo em português.
+  return `Analise o texto abaixo e crie entre 6 e 25 flashcards de estudo em português.
 
 Retorne APENAS um JSON válido (sem markdown, sem backticks, sem texto extra), no formato:
 [{"topic":"nome do tópico","question":"pergunta objetiva","answer":"resposta clara e concisa"}]
