@@ -1,6 +1,11 @@
 /* StudyScreen.module.css */
 
-.page { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg); }
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+}
 
 .body {
   display: grid;
@@ -9,8 +14,13 @@
   transition: grid-template-columns 0.25s ease;
 }
 
-.body:has(.leftCollapsed) { grid-template-columns: 200px 1fr; }
-.body:has(.leftExpanded)  { grid-template-columns: 380px 1fr; }
+.body:has(.leftCollapsed) {
+  grid-template-columns: 200px 1fr;
+}
+
+.body:has(.leftExpanded) {
+  grid-template-columns: 380px 1fr;
+}
 
 /* ── Painel esquerdo ─────────────────────────────────────── */
 .left {
@@ -24,10 +34,14 @@
   transition: all 0.25s ease;
 }
 
-.leftCollapsed { width: 200px; }
-.leftExpanded  { width: 380px; }
+.leftCollapsed {
+  width: 200px;
+}
 
-/* Botão toggle — sem aparência de botão nativo */
+.leftExpanded {
+  width: 380px;
+}
+
 .toggleBtn {
   display: flex;
   justify-content: space-between;
@@ -42,7 +56,9 @@
   gap: 8px;
 }
 
-.toggleBtn:hover { background: var(--bg-hover); }
+.toggleBtn:hover {
+  background: var(--bg-hover);
+}
 
 .leftLabel {
   font-size: 11px;
@@ -58,7 +74,6 @@
   white-space: nowrap;
 }
 
-/* Texto fonte */
 .sourceText {
   flex: 1;
   overflow-y: auto;
@@ -72,7 +87,6 @@
   border: 1px solid var(--border);
 }
 
-/* Botão novo texto (expandido) */
 .btnNew {
   padding: 9px 14px;
   border-radius: var(--radius-md);
@@ -85,9 +99,12 @@
   transition: all var(--transition);
   align-self: flex-start;
 }
-.btnNew:hover { background: var(--bg-hover); color: var(--text); }
 
-/* Botão novo texto (colapsado) */
+.btnNew:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
 .btnNewSmall {
   width: 100%;
   padding: 8px 12px;
@@ -101,7 +118,11 @@
   transition: all var(--transition);
   text-align: left;
 }
-.btnNewSmall:hover { background: var(--bg-hover); color: var(--text); }
+
+.btnNewSmall:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
 
 /* ── Painel direito ──────────────────────────────────────── */
 .right {
@@ -109,8 +130,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 28px;
-  padding: 2.5rem 2rem;
+  gap: 20px;
+  padding: 2rem 2rem;
   overflow-y: auto;
 }
 
@@ -122,7 +143,8 @@
   max-width: 480px;
 }
 
-.progressLabel, .scoreLabel {
+.progressLabel,
+.scoreLabel {
   font-size: 12px;
   color: var(--text-muted);
   white-space: nowrap;
@@ -143,8 +165,42 @@
   transition: width 0.35s ease;
 }
 
-/* ── Responsivo ──────────────────────────────────────────── */
+/* Aviso de texto truncado */
+.warningMsg {
+  width: 100%;
+  max-width: 480px;
+  font-size: 12px;
+  color: var(--warn-text);
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  border-left: 3px solid var(--warn-text);
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 700px) {
-  .body { grid-template-columns: 1fr !important; }
-  .left { display: none; }
+
+  /* Esconde o painel esquerdo no mobile */
+  .body {
+    grid-template-columns: 1fr !important;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    padding: 1.25rem 1rem;
+    gap: 14px;
+    min-height: calc(100vh - 56px);
+  }
+
+  .progressRow {
+    max-width: 100%;
+  }
+
+  .progressLabel,
+  .scoreLabel {
+    font-size: 11px;
+  }
 }

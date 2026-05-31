@@ -1,8 +1,10 @@
+/* TopBar.module.css */
+
 .bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   height: 56px;
   border-bottom: 1px solid var(--border);
   background: var(--bg);
@@ -15,7 +17,7 @@
   font-weight: 500;
   color: var(--text);
   letter-spacing: -0.02em;
-  min-width: 120px;
+  min-width: 80px;
 }
 
 .tabs {
@@ -27,7 +29,7 @@
 }
 
 .tab {
-  padding: 6px 20px;
+  padding: 6px 16px;
   border-radius: var(--radius-sm);
   border: none;
   background: transparent;
@@ -50,7 +52,7 @@
 }
 
 .themeToggle {
-  min-width: 120px;
+  min-width: 40px;
   display: flex;
   justify-content: flex-end;
   background: none;
@@ -64,4 +66,21 @@
 
 .themeToggle:hover {
   background: var(--bg-input);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .bar {
+    padding: 0 1rem;
+  }
+
+  .logo {
+    font-size: 14px;
+    min-width: 60px;
+  }
+
+  .tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }

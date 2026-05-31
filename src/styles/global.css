@@ -19,13 +19,11 @@
   --border: #D8D5CA;
   --card-bg: #FDFCF8;
   --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.05);
-
   --btn-know-bg: #FDFCF8;
   --btn-know-text: #1C1B18;
   --btn-know-border: #D8D5CA;
   --btn-rem-bg: #1C1B18;
   --btn-rem-text: #F4F2EB;
-
   --success-bg: #E8F3DA;
   --success-text: #3A6B10;
   --danger-bg: #FBEBE8;
@@ -33,10 +31,8 @@
   --info-bg: #E4EFFA;
   --info-text: #185FA5;
   --warn-text: #854F0B;
-
   --accent: #5C6AC4;
   --accent-soft: #EEF0FC;
-
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -57,13 +53,11 @@
   --border: #333336;
   --card-bg: #252527;
   --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2);
-
   --btn-know-bg: #2A2A2C;
   --btn-know-text: #F0EFE9;
   --btn-know-border: #444448;
   --btn-rem-bg: #F0EFE9;
   --btn-rem-text: #18181A;
-
   --success-bg: #173404;
   --success-text: #C0DD97;
   --danger-bg: #501313;
@@ -71,7 +65,6 @@
   --info-bg: #042C53;
   --info-text: #B5D4F4;
   --warn-text: #FAC775;
-
   --accent: #7C8FE8;
   --accent-soft: #1E2240;
 }
@@ -84,4 +77,11 @@ body,
   background: var(--bg);
   color: var(--text);
   transition: background var(--transition), color var(--transition);
+  /* Evita zoom indesejado no iOS ao clicar em inputs */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Previne scroll horizontal no mobile */
+body {
+  overflow-x: hidden;
 }

@@ -1,4 +1,4 @@
-// FlashCard.jsx — Card com flip estilo SimpleCards
+// src/components/FlashCard/FlashCard.jsx
 import { useState } from "react";
 import styles from "./FlashCard.module.css";
 
@@ -7,23 +7,34 @@ export function FlashCard({ card, onAnswer }) {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.flipScene} onClick={() => setFlipped((f) => !f)}>
+      {/* Card — clique para revelar */}
+      <div
+        className={styles.flipScene}
+        onClick={() => !flipped && setFlipped(true)}
+      >
         <div className={`${styles.flipInner} ${flipped ? styles.flipped : ""}`}>
-          <div className={styles.face}>
+          {/* Frente: pergunta */}
+          <div className={`${styles.face} ${styles.faceFront}`}>
             <span className={styles.faceLabel}>PERGUNTA</span>
             <p className={styles.faceText}>{card.question}</p>
             <span className={styles.hint}>Clique para ver a resposta</span>
           </div>
+
+          {/* Verso: resposta */}
           <div className={`${styles.face} ${styles.faceBack}`}>
             <span className={styles.faceLabel}>RESPOSTA</span>
             <p className={styles.faceText}>{card.answer}</p>
-            <span className={styles.hint}>Clique para ver a pergunta</span>
+            <span className={styles.hint} onClick={() => setFlipped(false)}>
+              Clique para ver a pergunta
+            </span>
           </div>
         </div>
       </div>
 
+      {/* Tópico */}
       <span className={styles.topic}>{card.topic}</span>
 
+      {/* Botões aparecem após revelar */}
       <div
         className={`${styles.actions} ${flipped ? styles.actionsVisible : ""}`}
       >
