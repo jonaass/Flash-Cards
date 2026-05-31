@@ -1,4 +1,4 @@
-/* src/components/Library/Library.module.css */
+/* Library.module.css */
 
 .page {
   display: flex;
@@ -88,6 +88,7 @@
   color: var(--text-muted);
 }
 
+/* Desempenho */
 .performance {
   background: var(--bg-input);
   border-radius: var(--radius-md);
@@ -197,6 +198,108 @@
   text-align: right;
 }
 
+/* ── Painel de regenerar ─────────────────────────────────── */
+.regenPanel {
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.regenTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.regenDiffs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.regenDiffBtn {
+  padding: 7px 4px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.regenDiffBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+/* Cores por dificuldade */
+.diff_facil.diffActive {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: var(--success-text);
+}
+
+.diff_medio.diffActive {
+  background: var(--info-bg);
+  color: var(--info-text);
+  border-color: var(--info-text);
+}
+
+.diff_dificil.diffActive {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border-color: var(--danger-text);
+}
+
+.regenActions {
+  display: flex;
+  gap: 8px;
+}
+
+.btnConfirmRegen {
+  flex: 1;
+  padding: 9px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.btnConfirmRegen:hover {
+  opacity: 0.82;
+}
+
+.btnCancelRegen {
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btnCancelRegen:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+/* ── Ações principais ────────────────────────────────────── */
 .cardActions {
   display: flex;
   gap: 8px;
@@ -221,6 +324,23 @@
   opacity: 0.82;
 }
 
+.btnRegen {
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btnRegen:hover {
+  background: var(--info-bg);
+  color: var(--info-text);
+  border-color: var(--info-text);
+}
+
 .btnDelete {
   padding: 9px 12px;
   border-radius: var(--radius-md);
@@ -238,6 +358,7 @@
   border-color: var(--danger-text);
 }
 
+/* Estado vazio */
 .empty {
   display: flex;
   flex-direction: column;

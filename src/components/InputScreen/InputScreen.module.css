@@ -60,18 +60,86 @@
 .deckHint {
   font-size: 11px;
   color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 4px;
 }
 
-.deckHint::before {
-  font-size: 10px;
+/* ── Seletor de dificuldade ──────────────────────────────── */
+.difficultyRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.diffBtn {
+  padding: 9px 8px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.diffBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+/* Ativo: cada dificuldade tem cor própria */
+.diff_facil.diffActive {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: var(--success-text);
+}
+
+.diff_medio.diffActive {
+  background: var(--info-bg);
+  color: var(--info-text);
+  border-color: var(--info-text);
+}
+
+.diff_dificil.diffActive {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border-color: var(--danger-text);
+}
+
+.diffDesc {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Textarea ────────────────────────────────────────────── */
+.textareaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.charCount {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.charNormal {
+  color: var(--text-muted);
+}
+
+.charWarn {
+  color: var(--warn-text);
+}
+
+.charDanger {
+  color: var(--danger-text);
 }
 
 .textarea {
   flex: 1;
-  min-height: 300px;
+  min-height: 220px;
   resize: none;
   padding: 14px;
   border-radius: var(--radius-md);
@@ -87,6 +155,24 @@
 
 .textarea:focus {
   border-color: var(--accent);
+}
+
+.warnMsg {
+  font-size: 12px;
+  color: var(--warn-text);
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  border-left: 3px solid var(--warn-text);
+}
+
+.dangerMsg {
+  font-size: 12px;
+  color: var(--danger-text);
+  background: var(--danger-bg);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  border-left: 3px solid var(--danger-text);
 }
 
 .counter {
@@ -111,7 +197,6 @@
   font-weight: 600;
   cursor: pointer;
   transition: opacity var(--transition);
-  letter-spacing: 0.01em;
 }
 
 .btnGenerate:hover:not(:disabled) {
@@ -123,7 +208,7 @@
   cursor: not-allowed;
 }
 
-/* Painel direito */
+/* ── Painel direito ──────────────────────────────────────── */
 .right {
   display: flex;
   flex-direction: column;

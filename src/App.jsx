@@ -1,4 +1,4 @@
-// App.jsx — Gerencia tema, fase e biblioteca de baralhos
+// src/App.jsx
 import { useState, useEffect } from 'react'
 import { useFlashcards }  from './hooks/useFlashcards'
 import InputScreen         from './components/InputScreen/InputScreen'
@@ -8,7 +8,6 @@ import { Results }         from './components/Results/Results'
 import { Library }         from './components/Library/Library'
 
 export default function App() {
-  // ── Tema ──────────────────────────────────────────────────
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('theme')
     if (saved) return saved
@@ -22,7 +21,6 @@ export default function App() {
 
   const toggleTheme = () => setTheme(t => t === 'light' ? 'dark' : 'light')
 
-  // ── Biblioteca ────────────────────────────────────────────
   const [showLibrary, setShowLibrary] = useState(false)
   const [library, setLibrary] = useState(() => {
     try { return JSON.parse(localStorage.getItem('flashcard_library') || '[]') }
@@ -45,12 +43,12 @@ export default function App() {
     })
   }
 
-  // ── Flashcards ────────────────────────────────────────────
   const {
     phase, cards, currentIndex, results,
-    inputText, error, currentCard,
-    correctCount, wrongCount, deckName,
-    handleGenerate, handleAnswer, handleRestart, handleStudyDeck,
+    inputText, error, warning, currentCard,
+    correctCount, wrongCount, deckName, difficulty,
+    handleGenerate, handleAnswer, handleRestart,
+    handleStudyDeck, handleRegenerateDeck,
   } = useFlashcards({ saveToLibrary })
 
   const commonProps = { theme, onToggleTheme: toggleTheme }
@@ -60,6 +58,7 @@ export default function App() {
     <Library
       decks={library}
       onStudy={(deck) => { setShowLibrary(false); handleStudyDeck(deck) }}
+      onRegenerate={(deck, diff) => { setShowLibrary(false); handleRegenerateDeck(deck, diff) }}
       onDelete={deleteDeck}
       onTabChange={onTabChange}
       {...commonProps}
@@ -69,12 +68,7 @@ export default function App() {
   return (
     <>
       {phase === 'input' && (
-        <InputScreen
-          error={error}
-          startGeneration={handleGenerate}
-          onTabChange={onTabChange}
-          {...commonProps}
-        />
+        <InputScreen error={error} startGeneration={handleGenerate} onTabChange={onTabChange} {...commonProps} />
       )}
       {phase === 'loading' && (
         <LoadingScreen onTabChange={onTabChange} {...commonProps} />
@@ -83,17 +77,13 @@ export default function App() {
         <StudyScreen
           card={currentCard} total={cards.length} currentIndex={currentIndex}
           correctCount={correctCount} wrongCount={wrongCount}
-          inputText={inputText} deckName={deckName}
+          inputText={inputText} deckName={deckName} warning={warning}
           onAnswer={handleAnswer} onRestart={handleRestart}
           onTabChange={onTabChange} {...commonProps}
         />
       )}
       {phase === 'results' && (
-        <Results
-          results={results} deckName={deckName}
-          onRestart={handleRestart} onTabChange={onTabChange}
-          {...commonProps}
-        />
+        <Results results={results} deckName={deckName} onRestart={handleRestart} onTabChange={onTabChange} {...commonProps} />
       )}
     </>
   )

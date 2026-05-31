@@ -1,88 +1,78 @@
 // src/services/api.js
-//
-// Camada de serviço: toda comunicação com o backend fica aqui.
-// Os componentes e hooks nunca chamam fetch diretamente —
-// sempre passam por este módulo.
-//
-// Vantagens:
-//   - Troca de URL ou modelo em um único lugar
-//   - Fácil de mockar em testes
-//   - Lógica de sanitização isolada
-//
-// Exporta:
-//   generateFlashcards(text) → Promise<FlashCard[]>
-//
-// Tipo FlashCard: { topic: string, question: string, answer: string }
 
-const API_CONFIG = {
-  // /api/flashcards é redirecionado para o server.js via proxy do Vite
-  // (em produção, o server.js já serve na mesma origem)
-  endpoint:  '/api/flashcards',
-  model:     'claude-sonnet-4-20250514',
-  maxTokens: 1500,
+const PROXY_URL = '/api/flashcards'
+const MAX_CHARS = 24000
+
+const DIFFICULTY_PROMPTS = {
+  facil: `
+- Crie perguntas DIRETAS e OBJETIVAS testando definições e conceitos básicos
+- As respostas devem ser simples, com 1 frase clara
+- Evite perguntas que exijam raciocínio complexo`,
+
+  medio: `
+- Crie perguntas de COMPREENSÃO testando a relação entre conceitos
+- As respostas devem explicar o "porquê" ou "como", com 1 a 2 frases
+- Misture perguntas diretas com perguntas de aplicação`,
+
+  dificil: `
+- Crie perguntas DESAFIADORAS de análise, síntese e raciocínio crítico
+- As respostas devem conectar múltiplos conceitos, com 2 a 3 frases
+- Evite perguntas com respostas óbvias — o usuário deve pensar antes de responder`,
 }
 
-/**
- * Monta o prompt que instrui o modelo a gerar flashcards em JSON.
- * Separado para facilitar ajustes no estilo das perguntas.
- */
-function buildPrompt(text) {
+function buildPrompt(text, difficulty = 'medio') {
+  const difficultyInstruction = DIFFICULTY_PROMPTS[difficulty] || DIFFICULTY_PROMPTS.medio
+
   return `Analise o texto abaixo e crie entre 6 e 12 flashcards de estudo em português.
 
 Retorne APENAS um JSON válido (sem markdown, sem backticks, sem texto extra), no formato:
 [{"topic":"nome do tópico","question":"pergunta objetiva","answer":"resposta clara e concisa"}]
 
-Regras:
-- Perguntas devem testar compreensão real, não memorização trivial
+Regras gerais:
 - Agrupe por tópicos relacionados (use o mesmo "topic" para assuntos similares)
-- Respostas devem ter entre 1 e 3 frases
 - Use linguagem clara e direta
+
+Nível de dificuldade: ${difficulty.toUpperCase()}${difficultyInstruction}
 
 Texto:
 ${text}`
 }
 
-/**
- * Remove possíveis marcações de código que o modelo pode inserir
- * mesmo quando instruído a não fazê-lo.
- */
 function sanitizeJson(raw) {
   return raw.replace(/```json/gi, '').replace(/```/g, '').trim()
 }
 
-/**
- * Chama o backend e retorna os flashcards gerados.
- *
- * @param   {string} text - Texto fornecido pelo usuário
- * @returns {Promise<Array<{topic: string, question: string, answer: string}>>}
- * @throws  {Error} se a requisição falhar ou o JSON for inválido
- */
-export async function generateFlashcards(text) {
-  const response = await fetch(API_CONFIG.endpoint, {
+function truncateText(text) {
+  if (text.length <= MAX_CHARS) return { text, truncated: false }
+  return { text: text.slice(0, MAX_CHARS), truncated: true }
+}
+
+export async function generateFlashcards(text, difficulty = 'medio') {
+  const { text: safeText, truncated } = truncateText(text)
+
+  if (truncated) {
+    console.warn(`[api.js] Texto truncado para ${MAX_CHARS} caracteres.`)
+  }
+
+  const response = await fetch(PROXY_URL, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model:      API_CONFIG.model,
-      max_tokens: API_CONFIG.maxTokens,
-      messages: [{ role: 'user', content: buildPrompt(text) }],
+      model:      'llama-3.3-70b-versatile',
+      max_tokens: 1500,
+      messages:   [{ role: 'user', content: buildPrompt(safeText, difficulty) }],
     }),
   })
 
-  if (!response.ok) {
-    throw new Error(`Erro ${response.status}: ${response.statusText}`)
-  }
+  if (!response.ok) throw new Error(`Erro na API: ${response.status}`)
 
-  const data = await response.json()
-
-  const rawText = (data.content || [])
-    .map(block => block.text || '')
-    .join('')
-
-  const cards = JSON.parse(sanitizeJson(rawText))
+  const data    = await response.json()
+  const rawText = (data.content || []).map(b => b.text || '').join('')
+  const cards   = JSON.parse(sanitizeJson(rawText))
 
   if (!Array.isArray(cards) || cards.length === 0) {
-    throw new Error('Nenhum flashcard gerado. Tente com outro texto.')
+    throw new Error('Nenhum flashcard gerado.')
   }
 
-  return cards
+  return { cards, truncated }
 }
