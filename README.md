@@ -199,14 +199,14 @@ Flash-Cards/
 
 | Variável | Descrição | Obrigatório |
 |---|---|---|
-| `GROQ_API_KEY` | Chave de API do Groq | ✅ Sim |
-| `GROQ_MODEL` | Modelo de IA a usar | ⬜ Opcional (padrão: `llama-3.3-70b-versatile`) |
+| `GROQ_API_KEY` | Chave de API do Groq | Sim |
+| `GROQ_MODEL` | Modelo de IA a usar | Opcional (padrão: `llama-3.3-70b-versatile`) |
 
 > ⚠️ **Nunca suba o arquivo `.env` para o GitHub.** Ele já está no `.gitignore`.
 
 ---
 
-## ☁️ Deploy
+## Deploy
 
 | Parte | Plataforma | Plano |
 |---|---|---|

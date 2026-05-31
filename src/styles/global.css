@@ -1,76 +1,84 @@
 /* global.css */
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 /* ── Light mode ──────────────────────────────────────────── */
 :root {
-  --bg:              #F4F2EB;
-  --bg-panel:        #FDFCF8;
-  --bg-input:        #ECEAE1;
-  --bg-hover:        #E3E1D7;
-  --text:            #1C1B18;
-  --text-muted:      #85837A;
-  --border:          #D8D5CA;
-  --card-bg:         #FDFCF8;
-  --card-shadow:     0 4px 32px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.05);
+  --bg: #F4F2EB;
+  --bg-panel: #FDFCF8;
+  --bg-input: #ECEAE1;
+  --bg-hover: #E3E1D7;
+  --text: #1C1B18;
+  --text-muted: #85837A;
+  --border: #D8D5CA;
+  --card-bg: #FDFCF8;
+  --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.05);
 
-  --btn-know-bg:     #FDFCF8;
-  --btn-know-text:   #1C1B18;
+  --btn-know-bg: #FDFCF8;
+  --btn-know-text: #1C1B18;
   --btn-know-border: #D8D5CA;
-  --btn-rem-bg:      #1C1B18;
-  --btn-rem-text:    #F4F2EB;
+  --btn-rem-bg: #1C1B18;
+  --btn-rem-text: #F4F2EB;
 
-  --success-bg:      #E8F3DA;
-  --success-text:    #3A6B10;
-  --danger-bg:       #FBEBE8;
-  --danger-text:     #A32D2D;
-  --info-bg:         #E4EFFA;
-  --info-text:       #185FA5;
-  --warn-text:       #854F0B;
+  --success-bg: #E8F3DA;
+  --success-text: #3A6B10;
+  --danger-bg: #FBEBE8;
+  --danger-text: #A32D2D;
+  --info-bg: #E4EFFA;
+  --info-text: #185FA5;
+  --warn-text: #854F0B;
 
-  --accent:          #5C6AC4;
-  --accent-soft:     #EEF0FC;
+  --accent: #5C6AC4;
+  --accent-soft: #EEF0FC;
 
-  --radius-sm:  6px;
-  --radius-md:  10px;
-  --radius-lg:  16px;
-  --radius-xl:  24px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --transition: 0.2s ease;
   --font-display: 'Lora', Georgia, serif;
-  --font-ui:      'DM Sans', system-ui, sans-serif;
+  --font-ui: 'DM Sans', system-ui, sans-serif;
 }
 
 /* ── Dark mode ───────────────────────────────────────────── */
 [data-theme="dark"] {
-  --bg:              #18181A;
-  --bg-panel:        #222224;
-  --bg-input:        #2A2A2C;
-  --bg-hover:        #303032;
-  --text:            #F0EFE9;
-  --text-muted:      #888880;
-  --border:          #333336;
-  --card-bg:         #252527;
-  --card-shadow:     0 4px 32px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.2);
+  --bg: #18181A;
+  --bg-panel: #222224;
+  --bg-input: #2A2A2C;
+  --bg-hover: #303032;
+  --text: #F0EFE9;
+  --text-muted: #888880;
+  --border: #333336;
+  --card-bg: #252527;
+  --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2);
 
-  --btn-know-bg:     #2A2A2C;
-  --btn-know-text:   #F0EFE9;
+  --btn-know-bg: #2A2A2C;
+  --btn-know-text: #F0EFE9;
   --btn-know-border: #444448;
-  --btn-rem-bg:      #F0EFE9;
-  --btn-rem-text:    #18181A;
+  --btn-rem-bg: #F0EFE9;
+  --btn-rem-text: #18181A;
 
-  --success-bg:      #173404;
-  --success-text:    #C0DD97;
-  --danger-bg:       #501313;
-  --danger-text:     #F09595;
-  --info-bg:         #042C53;
-  --info-text:       #B5D4F4;
-  --warn-text:       #FAC775;
+  --success-bg: #173404;
+  --success-text: #C0DD97;
+  --danger-bg: #501313;
+  --danger-text: #F09595;
+  --info-bg: #042C53;
+  --info-text: #B5D4F4;
+  --warn-text: #FAC775;
 
-  --accent:          #7C8FE8;
-  --accent-soft:     #1E2240;
+  --accent: #7C8FE8;
+  --accent-soft: #1E2240;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   font-family: var(--font-ui);
   background: var(--bg);
