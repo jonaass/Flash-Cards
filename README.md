@@ -120,7 +120,7 @@ O nível selecionado altera o prompt enviado ao modelo, produzindo perguntas com
 
 ```
 Fácil   → Perguntas diretas de definição e memorização (Bloom: Lembrar)
-M�dio   → Perguntas de compreensão e relação entre conceitos (Bloom: Compreender)
+Médio   → Perguntas de compreensão e relação entre conceitos (Bloom: Compreender)
 Difícil → Perguntas de análise, síntese e raciocínio crítico (Bloom: Analisar/Avaliar)
 ```
 
@@ -250,7 +250,7 @@ npm run dev
 | `GROQ_API_KEY` |  Sim | Chave da API do Groq |
 | `GROQ_MODEL` |  Opcional | Modelo a usar (padrão: `llama-3.3-70b-versatile`) |
 
-> ⚠️ O arquivo `.env` está no `.gitignore` e **nunca deve ser commitado**.
+>  O arquivo `.env` está no `.gitignore` e **nunca deve ser commitado**.
 
 ---
 
