@@ -1,50 +1,49 @@
+<div align="center">
+
 #  Flash-Card IA
 
-> Transforme qualquer texto em flashcards de estudo com Inteligência Artificial.
+### Gerador inteligente de flashcards com Inteligência Artificial
 
-![Status](https://img.shields.io/badge/status-active-brightgreen)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)
+Cole qualquer texto — aula, artigo ou livro — e a IA cria perguntas e respostas
+personalizadas para fixar o aprendizado.
 
+<br/>
 
----
+[![Status](https://img.shields.io/badge/status-live-brightgreen?style=flat-square)](https://flash-cards-psi-orpin.vercel.app)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
-##  Índice
+**[ Ver demo ao vivo](https://flash-cards-psi-orpin.vercel.app)**
 
-- [Sobre o projeto](#-sobre-o-projeto)
-- [Funcionalidades](#-funcionalidades)
-- [Tecnologias](#-tecnologias)
-- [Arquitetura](#-arquitetura)
-- [Pré-requisitos](#-pré-requisitos)
-- [Instalação e uso](#-instalação-e-uso)
-- [Estrutura de pastas](#-estrutura-de-pastas)
-- [Variáveis de ambiente](#-variáveis-de-ambiente)
-- [Deploy](#-deploy)
-- [Autor](#-autor)
+</div>
 
 ---
 
 ##  Sobre o projeto
 
-O **Flash-Card IA** é uma aplicação web que usa Inteligência Artificial para gerar flashcards de estudo automaticamente a partir de qualquer texto. Cole um conteúdo — aula, artigo, resumo, capítulo de livro — e a IA analisa, identifica os tópicos principais e cria perguntas e respostas para fixar o aprendizado.
+O **Flash-Card IA** é uma aplicação web full-stack que integra um modelo de linguagem de grande escala (LLM) para transformar qualquer texto em flashcards de estudo de forma automática.
 
-Durante o estudo, o usuário responde se lembrou ou não de cada card. Ao final, a aplicação exibe um relatório completo de desempenho por tópico. Os baralhos são salvos automaticamente em uma **Biblioteca** pessoal, onde é possível rever o histórico e estudar novamente quando quiser.
+O projeto foi desenvolvido do zero com foco em **arquitetura limpa**, **experiência do usuário** e **segurança**. Toda a comunicação com a API de IA passa por um servidor Node.js intermediário, garantindo que credenciais sensíveis nunca sejam expostas no navegador.
 
 ---
 
 ##  Funcionalidades
 
-- 📝 **Geração automática** de flashcards a partir de texto colado pelo usuário
-- 🃏 **Animação de flip 3D** nos cards — frente (pergunta) e verso (resposta)
-- ✅ **"Lembrei" e "Não Sei"** — registro de acertos e erros em tempo real
-- 📊 **Relatório de desempenho** com aproveitamento geral e breakdown por tópico
-- 📚 **Biblioteca de baralhos** — histórico salvo no navegador com desempenho de cada sessão
-- 🔄 **Estudar novamente** — releia qualquer baralho salvo sem precisar gerar de novo
-- 📄 **Painel de texto colapsável** — referência ao texto original durante o estudo, ocultável com um clique
-- 🌙 **Dark mode / Light mode** — alternância manual, preferência salva automaticamente
-- 📱 **Layout responsivo** — funciona em desktop e mobile
-- 🔒 **API Key protegida** — nunca exposta no navegador, guardada no servidor
+| Funcionalidade | Descrição |
+|---|---|
+|  **Geração por IA** | Analisa o texto e cria entre 6 e 12 flashcards agrupados por tópico |
+| **Níveis de dificuldade** | Fácil, Médio e Difícil — cada nível altera o tipo de pergunta gerada |
+| **Animação de flip 3D** | Cards com frente (pergunta) e verso (resposta), animação CSS 3D no desktop |
+| **Relatório de desempenho** | Aproveitamento geral e breakdown de acertos/erros por tópico |
+|  **Biblioteca pessoal** | Baralhos salvos no `localStorage` com histórico de desempenho |
+|  **Regenerar perguntas** | Gera novas questões diferentes a partir do mesmo texto, com dificuldade escolhida |
+|  **Painel colapsável** | Texto de referência retrátil durante o estudo |
+|  **Truncamento automático** | Textos acima de 24.000 caracteres são cortados com aviso ao usuário |
+|  **Dark / Light mode** | Alternância com animação, preferência salva no `localStorage` |
+|  **Design responsivo** | Layout adaptado para mobile com botões fixos no rodapé |
+|  **API Key protegida** | Credenciais guardadas no servidor, nunca expostas no frontend |
 
 ---
 
@@ -52,62 +51,148 @@ Durante o estudo, o usuário responde se lembrou ou não de cada card. Ao final,
 
 ###  Frontend
 
-| Tecnologia | Versão | Categoria | Finalidade |
-|---|---|---|---|
-| [React](https://react.dev/) | 19 | UI Library | Componentes, estado e renderização |
-| [Vite](https://vitejs.dev/) | 8 | Build Tool | Servidor de desenvolvimento e build de produção |
-| CSS Modules | — | Estilização | CSS com escopo por componente, sem conflitos |
-| JavaScript ES6+ | — | Linguagem | Lógica, async/await, hooks e destructuring |
-| Google Fonts | — | Tipografia | Lora (cards) + DM Sans (interface) |
+| Tecnologia | Versão | Papel no projeto |
+|---|---|---|
+| [React](https://react.dev/) | 19 | Biblioteca de UI — componentes, estado e ciclo de vida |
+| [Vite](https://vitejs.dev/) | 8 | Bundler e servidor de desenvolvimento com HMR |
+| CSS Modules | — | Estilização com escopo por componente, sem conflitos de classe |
+| Google Fonts | — | Tipografia: *Lora* (serif, nos cards) + *DM Sans* (interface) |
 
 ###  Backend
 
-| Tecnologia | Versão | Categoria | Finalidade |
-|---|---|---|---|
-| [Node.js](https://nodejs.org/) | 18+ | Runtime | Servidor proxy que protege a API Key |
-| `http` / `https` | nativo | Módulo Node | Servidor HTTP e requisições para a Groq |
-| `fs` / `path` | nativo | Módulo Node | Leitura do `.env` e arquivos estáticos |
+| Tecnologia | Papel no projeto |
+|---|---|
+| [Node.js](https://nodejs.org/) 18+ | Servidor proxy HTTP — protege a API Key e repassa requisições |
+| Módulos nativos (`http`, `https`, `fs`) | Zero dependências externas no backend |
 
 ###  Inteligência Artificial
 
-| Tecnologia | Categoria | Finalidade |
-|---|---|---|
-| [Groq API](https://console.groq.com/) | API de IA | Plataforma de inferência gratuita e rápida |
-| [LLaMA 3.3 70B](https://groq.com/) | Modelo LLM | Análise do texto e geração dos flashcards em JSON |
-
-###  Ferramentas
-
-| Ferramenta | Finalidade |
+| Tecnologia | Papel no projeto |
 |---|---|
-| [Git](https://git-scm.com/) | Versionamento do código |
-| [GitHub](https://github.com/) | Hospedagem do repositório |
-| [VS Code](https://code.visualstudio.com/) | Editor de código |
-| [Vercel](https://vercel.com/) | Hospedagem gratuita do frontend |
-| [Render](https://render.com/) | Hospedagem gratuita do backend |
+| [Groq API](https://console.groq.com/) | Plataforma de inferência — plano gratuito com 12.000 tokens/min |
+| [LLaMA 3.3 70B](https://groq.com/) | Modelo de linguagem para análise de texto e geração de JSON |
+
+###  Infraestrutura
+
+| Serviço | Função |
+|---|---|
+| [Vercel](https://vercel.com/) | Hospedagem do frontend — deploy automático via GitHub |
+| [Render](https://render.com/) | Hospedagem do backend Node.js — plano gratuito |
+| [GitHub](https://github.com/) | Versionamento e integração com Vercel/Render |
 
 ---
 
 ##  Arquitetura
 
 ```
-Usuário → React (Vite :5173) → Node.js (:3001) → Groq API → LLaMA 3.3 70B
+┌─────────────────────────────────────────────────────────────┐
+│                         FRONTEND                            │
+│                    React + Vite (Vercel)                    │
+│                                                             │
+│  InputScreen → useFlashcards hook → services/api.js        │
+│       ↓               ↓                    ↓               │
+│  StudyScreen     localStorage         POST /api/flashcards  │
+│       ↓          (Biblioteca)               ↓              │
+│    Results                                  ↓              │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                    vercel.json (rewrite)
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                          BACKEND                            │
+│                    Node.js (Render)                         │
+│                                                             │
+│   server.js → injeta GROQ_API_KEY → Groq API              │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+                    LLaMA 3.3 70B → JSON de flashcards
 ```
 
-O servidor Node.js atua como **proxy seguro**: recebe as requisições do React, injeta a API Key e repassa para a Groq. A chave nunca fica exposta no navegador.
+### Por que um servidor proxy?
 
-A **Biblioteca** usa `localStorage` para persistir os baralhos estudados diretamente no navegador — sem banco de dados externo.
+Chamar a API do Groq diretamente do navegador exporia a API Key para qualquer pessoa que abrisse o DevTools. O `server.js` atua como intermediário seguro: o frontend chama `/api/flashcards` (mesma origem), o servidor injeta a chave e repassa para o Groq.
+
+### Arquitetura de níveis de dificuldade
+
+O nível selecionado altera o prompt enviado ao modelo, produzindo perguntas com complexidade cognitiva diferente:
+
+```
+Fácil   → Perguntas diretas de definição e memorização (Bloom: Lembrar)
+M�dio   → Perguntas de compreensão e relação entre conceitos (Bloom: Compreender)
+Difícil → Perguntas de análise, síntese e raciocínio crítico (Bloom: Analisar/Avaliar)
+```
+
+---
+
+##  Estrutura do projeto
+
+```
+Flash-Cards/
+├── server.js               # Servidor Node.js — proxy seguro para o Groq
+├── vercel.json             # Rewrites do Vercel para /api/* → Render
+├── .env.example            # Modelo das variáveis de ambiente
+├── .gitignore              # node_modules, dist, .env
+├── vite.config.js          # Vite + proxy local /api/* → :3001
+├── package.json
+├── index.html              # HTML raiz com Google Fonts
+└── src/
+    ├── App.jsx             # Raiz: gerencia tema, fases e biblioteca
+    ├── main.jsx            # Ponto de entrada React
+    │
+    ├── styles/
+    │   └── global.css      # Variáveis CSS (light/dark), reset, tipografia
+    │
+    ├── services/
+    │   └── api.js          # Fetch para /api/flashcards + prompt por dificuldade
+    │                       # + truncamento automático de texto (24k chars)
+    │
+    ├── hooks/
+    │   └── useFlashcards.js # Custom Hook central:
+    │                        # handleGenerate, handleStudyDeck,
+    │                        # handleRegenerateDeck, handleAnswer, handleRestart
+    │
+    └── components/
+        ├── TopBar/          # Barra superior: logo, tabs, toggle tema (animado)
+        ├── InputScreen/     # Tela inicial: nome, dificuldade, texto, contador
+        ├── LoadingScreen/   # Spinner durante chamada à API
+        ├── FlashCard/       # Card com flip 3D (desktop) / toggle (mobile)
+        ├── StudyScreen/     # Layout de estudo: painel colapsável + progresso
+        ├── Results/         # Relatório: métricas + breakdown por tópico
+        └── Library/         # Biblioteca: histórico, desempenho, regenerar
+```
+
+---
+
+##  Decisões técnicas relevantes
+
+### Custom Hook centralizado (`useFlashcards.js`)
+Toda a lógica de estado fica em um único hook, mantendo os componentes puramente visuais. Isso facilita testes, manutenção e reutilização.
+
+### CSS Modules
+Cada componente tem seu próprio arquivo `.module.css`. Elimina conflitos de nomes, facilita manutenção e mantém o CSS colocado com o componente que o usa.
+
+### Persistência com `localStorage`
+Os baralhos são salvos diretamente no navegador — sem banco de dados externo. O ID de cada baralho é gerado uma única vez (na criação), garantindo que re-estudar o mesmo baralho atualize o registro existente em vez de criar duplicatas.
+
+### Truncamento automático de texto
+O plano gratuito do Groq tem limite de 12.000 tokens/min (~1 token = 3-4 caracteres). Textos acima de 24.000 caracteres são truncados automaticamente em `api.js`, com aviso visual ao usuário, evitando o erro 413 (*Payload Too Large*).
+
+### Flip adaptado para mobile
+A animação de flip 3D com `position: absolute` causa problemas em browsers mobile. No mobile, a lógica troca para mostrar/esconder as faces via CSS (`display: flex/none`), mantendo a mesma experiência sem quebrar o layout.
 
 ---
 
 ##  Pré-requisitos
 
-- [Node.js](https://nodejs.org/) v18 ou superior
+- [Node.js](https://nodejs.org/) v18+
 - [Git](https://git-scm.com/)
-- Chave de API gratuita do [Groq](https://console.groq.com/) — sem necessidade de cartão
+- Chave gratuita do [Groq](https://console.groq.com/) — sem cartão de crédito
 
 ---
 
-##  Instalação e uso
+##  Como rodar localmente
 
 ### 1. Clone o repositório
 
@@ -116,14 +201,17 @@ git clone https://github.com/jonaass/Flash-Cards.git
 cd Flash-Cards
 ```
 
-### 2. Configure as variáveis de ambiente
+### 2. Configure o ambiente
 
 ```bash
-copy .env.example .env   # Windows
-cp .env.example .env     # Mac/Linux
+# Windows
+copy .env.example .env
+
+# Mac / Linux
+cp .env.example .env
 ```
 
-Abra o `.env` e preencha:
+Edite o `.env`:
 
 ```env
 GROQ_API_KEY=gsk_sua_chave_aqui
@@ -138,88 +226,56 @@ GROQ_MODEL=llama-3.3-70b-versatile
 npm install
 ```
 
-### 4. Terminal 1 — inicie o servidor proxy
+### 4. Inicie os dois serviços
 
+**Terminal 1 — backend:**
 ```bash
 node server.js
+# ✓ Servidor rodando em http://localhost:3001
+# ✓ Groq API Key carregada
 ```
 
-Resultado esperado:
-```
-✓ Servidor rodando em http://localhost:3001
-✓ Groq API Key carregada
-✓ Modelo: llama-3.3-70b-versatile
-```
-
-### 5. Terminal 2 — inicie o frontend
-
+**Terminal 2 — frontend:**
 ```bash
 npm run dev
-```
-
-### 6. Acesse no navegador
-
-```
-http://localhost:5173
-```
-
----
-
-##  Estrutura de pastas
-
-```
-Flash-Cards/
-├── server.js               # Servidor Node.js — proxy para a API do Groq
-├── .env.example            # Modelo de configuração das variáveis
-├── vite.config.js          # Config do Vite + proxy /api → :3001
-├── package.json
-├── index.html              # HTML raiz com Google Fonts
-└── src/
-    ├── App.jsx             # Componente raiz — gerencia tema e telas
-    ├── main.jsx            # Ponto de entrada React
-    ├── styles/
-    │   └── global.css      # Variáveis CSS de tema (light/dark) + reset
-    ├── services/
-    │   └── api.js          # Comunicação com o backend
-    ├── hooks/
-    │   └── useFlashcards.js # Todo o estado e lógica da aplicação
-    └── components/
-        ├── TopBar/         # Barra superior com logo, tabs e toggle de tema
-        ├── InputScreen/    # Tela inicial — entrada de texto e nome do baralho
-        ├── LoadingScreen/  # Spinner durante a geração dos cards
-        ├── FlashCard/      # Card individual com animação de flip 3D
-        ├── StudyScreen/    # Layout de estudo com painel colapsável
-        ├── Results/        # Relatório final de desempenho
-        └── Library/        # Biblioteca de baralhos salvos
+# ✓ http://localhost:5173
 ```
 
 ---
 
 ##  Variáveis de ambiente
 
-| Variável | Descrição | Obrigatório |
+| Variável | Obrigatório | Descrição |
 |---|---|---|
-| `GROQ_API_KEY` | Chave de API do Groq | Sim |
-| `GROQ_MODEL` | Modelo de IA a usar | Opcional (padrão: `llama-3.3-70b-versatile`) |
+| `GROQ_API_KEY` |  Sim | Chave da API do Groq |
+| `GROQ_MODEL` |  Opcional | Modelo a usar (padrão: `llama-3.3-70b-versatile`) |
 
-> ⚠️ **Nunca suba o arquivo `.env` para o GitHub.** Ele já está no `.gitignore`.
+> ⚠️ O arquivo `.env` está no `.gitignore` e **nunca deve ser commitado**.
 
 ---
 
-## Deploy
+##  Deploy em produção
 
-| Parte | Plataforma | Plano |
-|---|---|---|
-| Frontend (React) | [Vercel](https://vercel.com/) | Gratuito |
-| Backend (Node.js) | [Render](https://render.com/) | Gratuito (750h/mês) |
+O projeto usa dois serviços gratuitos em conjunto:
+
+```
+Usuário → Vercel (frontend) → vercel.json rewrite → Render (backend) → Groq API
+```
 
 **Vercel (frontend):**
-- Importe o repositório → Build Command: `npm run build` → Output: `dist`
+1. Importe o repositório em [vercel.com](https://vercel.com)
+2. Build Command: `npm run build` | Output: `dist`
 
 **Render (backend):**
-- New Web Service → Start Command: `node server.js`
-- Adicione `GROQ_API_KEY` e `GROQ_MODEL` nas variáveis de ambiente
+1. New Web Service → conecte o repositório
+2. Start Command: `node server.js`
+3. Adicione `GROQ_API_KEY` e `GROQ_MODEL` nas variáveis de ambiente
+4. Copie a URL gerada e atualize o `vercel.json`
 
-> O plano gratuito do Render pode ter cold start de ~30 segundos após inatividade.
+> O plano gratuito do Render tem *cold start* de ~30s após inatividade.
 
 ---
+
+<div align="center">
+  <sub>Construído com React, Node.js e LLaMA 3.3 · Hospedado no Vercel + Render</sub>
+</div>
